@@ -9,10 +9,8 @@ metadata:
 spec:
   resources:
     requests:
-      storage: 1Gi
-  volumeMode: Filesystem
-  accessModes:
-    - ReadWriteOnce
+      storage: "1Gi"
+  volumeName: "pvc-test"
 ---
 apiVersion: apps/v1
 kind: Deployment
