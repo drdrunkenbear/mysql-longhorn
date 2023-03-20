@@ -12,6 +12,8 @@ spec:
     requests:
       storage: "1Gi"
   volumeName: "pvc-test"
+  accessModes:
+    - ReadWriteOnce
 ---
 apiVersion: apps/v1
 kind: Deployment
