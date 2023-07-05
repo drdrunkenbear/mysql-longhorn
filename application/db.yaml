@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: database
-  namespace: longhorn-system
+  namespace: 2-tier-appp  
   labels:
     "gslab": lamp
   annotations:
@@ -20,6 +20,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: 2-tier-appp  
   name: mysql
   labels:
     "gslab" : lamp
@@ -55,6 +56,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: 2-tier-appp  
   name: mysql
   labels:
    "gslab": lamp
