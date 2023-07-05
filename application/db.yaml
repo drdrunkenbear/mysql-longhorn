@@ -20,10 +20,10 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: 2-tier-appp  
   name: mysql
   labels:
     "gslab" : lamp
+  namespace: 2-tier-appp 
 spec:
   replicas: 1
   revisionHistoryLimit: 5
@@ -42,6 +42,27 @@ spec:
           limits:
             memory: "512Mi"
             cpu: "500m"
+        env:
+         - name: MYSQL_ROOT_PASSWORD
+           valueFrom:
+            secretKeyRef:
+              name: mysql-credentials
+              key: rootpw
+         - name: MYSQL_USER
+           valueFrom:
+            secretKeyRef:
+              name: mysql-credentials
+              key: user
+         - name: MYSQL_PASSWORD
+           valueFrom:
+            secretKeyRef:
+              name: mysql-credentials
+              key: password
+         - name: MYSQL_DATABASE
+           value: gsLab     
+        livenessProbe:
+         tcpSocket:
+          port: 3306
         ports:
         - containerPort: 3306
         volumeMounts:
